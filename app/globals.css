@@ -89,6 +89,7 @@ body {
 }
 
 .input-custom {
+  /* width: 30vh; */
   border-width: 2px !important;
   border-color: #72c02c !important;
   background-color: white;
@@ -101,6 +102,7 @@ body {
     opacity: 1;
   }
   &:focus {
+    color: #0a0a0a !important;
     border-color: #72c02c !important;
     border-top-color: #72c02c !important;
     outline-color: rgba(31, 41, 55, 0.1);

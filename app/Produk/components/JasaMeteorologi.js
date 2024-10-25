@@ -51,13 +51,14 @@ export default function JasaMeteorologi() {
                 </div>
                 <CardBody>
                   <h2 className="text-lg font-semibold">{product.Nama}</h2>
-                  <div className="flex flex-wrap justify-between items-center my-2">
-                    <p className="text-gray-500">{product.Harga}</p>
+                  <div className="flex flex-col justify-between items-center my-2 space-y-5">
+                    <p className="text-gray-500 mb-5">{product.Harga}</p>
                     <Button
                       className="button-effect"
                       disabled={product.Status === "Tidak Tersedia"}
                     >
                       <FaCartShopping size={15} />
+                      <span className="text-sm">Masukkan Keranjang</span>
                     </Button>
                   </div>
                 </CardBody>
