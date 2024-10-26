@@ -7,36 +7,12 @@ import { FcGoogle } from "react-icons/fc";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import LoginIcon from "@/assets/img/Icon/Login.png";
 import useNavbarAktif from "@/hooks/Frontend/useNavbarAktif";
-import { auth, googleProvider, firestore } from "@/lib/firebaseConfig";
-import { signInWithPopup } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
 
 function AuthPage() {
   const { navbarAktif, handlenavbarAktif } = useNavbarAktif("/Beranda");
   const [isPasswordVisibleLogin, setIsPasswordVisibleLogin] = useState(false);
   const togglePasswordVisibilityLogin = () => {
     setIsPasswordVisibleLogin((prevState) => !prevState);
-  };
-
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-
-      const userRef = doc(firestore, "pengguna", user.uid);
-      await setDoc(userRef, {
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        createdAt: new Date(),
-      });
-
-      console.log("User data stored in Firestore:", user);
-      handlenavbarAktif("/Dashboard"); // Example redirection
-    } catch (error) {
-      console.error("Google Sign-In error:", error);
-      alert("Google Sign-In failed: " + error.message);
-    }
   };
 
   return (
@@ -90,10 +66,7 @@ function AuthPage() {
                 </Button>
               </form>
               <p className="text-center text-black font-bold mb-6">OR</p>
-              <Button
-                className="w-full mb-4 !border-2 !border-secondary text-black text-sm flex items-center justify-center space-x-2 my-8"
-                onClick={handleGoogleSignIn}
-              >
+              <Button className="w-full mb-4 !border-2 !border-secondary text-black text-sm flex items-center justify-center space-x-2 my-8">
                 <FcGoogle />
                 <span>Continue with Google</span>
               </Button>

@@ -24,22 +24,10 @@ const StepFormPerusahaan = ({ stepAktif, checkboxAktif, setCheckboxAktif }) => {
                 />
               </div>
               <div>
-                <p className="text-sm font-bold">Nama Depan</p>
+                <p className="text-sm font-bold">Nama Lengkap</p>
                 <Input
                   className="input-custom"
-                  placeholder="Nama Depan"
-                  size="lg"
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  required
-                />
-              </div>
-              <div>
-                <p className="text-sm font-bold">Nama Belakang</p>
-                <Input
-                  className="input-custom"
-                  placeholder="Nama Belakang"
+                  placeholder="Nama Lengkap"
                   size="lg"
                   labelProps={{
                     className: "hidden",
@@ -80,18 +68,18 @@ const StepFormPerusahaan = ({ stepAktif, checkboxAktif, setCheckboxAktif }) => {
                   <option>Perempuan</option>
                 </select>
               </div>
-            </div>
-            <div className="my-3">
-              <p className="text-sm font-bold"> Email</p>
-              <Input
-                className="input-custom"
-                placeholder="Email"
-                size="lg"
-                labelProps={{
-                  className: "hidden",
-                }}
-                required
-              />
+              <div>
+                <p className="text-sm font-bold"> Email</p>
+                <Input
+                  className="input-custom"
+                  placeholder="Email"
+                  size="lg"
+                  labelProps={{
+                    className: "hidden",
+                  }}
+                  required
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -48,22 +48,10 @@ const StepFormPerorangan = ({ stepAktif, checkboxAktif, setCheckboxAktif }) => {
                 />
               </div>
               <div>
-                <p className="text-sm font-bold">Nama Depan</p>
+                <p className="text-sm font-bold">Nama Lengkap</p>
                 <Input
                   className="input-custom"
-                  placeholder="Nama Depan"
-                  size="lg"
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  required
-                />
-              </div>
-              <div>
-                <p className="text-sm font-bold">Nama Belakang</p>
-                <Input
-                  className="input-custom"
-                  placeholder="Nama Belakang"
+                  placeholder="Nama Lengkap"
                   size="lg"
                   labelProps={{
                     className: "hidden",

@@ -1,9 +1,11 @@
+"use client";
 import { Typography, Button } from "@/app/MTailwind";
 import "@/app/globals.css";
+import useNavbarAktif from "@/hooks/Frontend/useNavbarAktif";
 import { FaTrash } from "react-icons/fa6";
-// import toast, { Toaster } from "react-hot-toast";
 
 const PemesananProduk = () => {
+  const { navbarAktif, handlenavbarAktif } = useNavbarAktif();
   const HeaderPesanan = [
     "Nama",
     "Harga",
@@ -41,9 +43,7 @@ const PemesananProduk = () => {
 
   return (
     <div className="mt-10 py-20 lg:py-10 z-10 relative">
-      <div className="text-base justify-center text-center font-bold">
-        {/* <Toaster position="top-right" reverseOrder={false} /> */}
-      </div>
+      <div className="text-base justify-center text-center font-bold"></div>
       <div className="grid grid-cols-1 justify-center items-center gap-10 lg:gap-2 space-y-10">
         <div className="flex flex-col items-center justify-center w-full h-full mx-auto text-center leading-relaxed px-4 lg:px-80 overflow-auto">
           <table className="w-full min-w-max table-fixed mx-auto bg-white rounded-2xl">
@@ -136,7 +136,11 @@ const PemesananProduk = () => {
               </thead>
             </table>
             <div className="flex justify-start mt-10 mx-3">
-              <Button className="button-effect" type="button">
+              <Button
+                className="button-effect"
+                type="button"
+                onClick={() => handlenavbarAktif("/Pemesanan")}
+              >
                 <span>Lanjutkan Pemesanan</span>
               </Button>
             </div>

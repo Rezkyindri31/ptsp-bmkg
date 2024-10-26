@@ -53,7 +53,9 @@ export default function JasaKlimatologi() {
                   <FaCloudBolt size={100} className="text-secondary" />
                 </div>
                 <CardBody>
-                  <h2 className="text-lg font-semibold">{product.Nama}</h2>
+                  <h2 className="text-lg font-semibold text-center">
+                    {product.Nama}
+                  </h2>
                   <div className="flex flex-col justify-between items-center my-2 space-y-5">
                     <p className="text-gray-500 mb-5">{product.Harga}</p>
                     <Button

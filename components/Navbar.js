@@ -108,19 +108,6 @@ function Navigation() {
           Produk
         </a>
       </Typography>
-      <Typography
-        as="li"
-        className={`flex items-center gap-x-2 p-1 font-bold hover:translate-y-1 lg:text-xl cursor-pointer ${
-          navbarAktif === "/FormBiodata" ? "text-secondary" : "text-white"
-        }`}
-      >
-        <a
-          className="flex items-center"
-          onClick={() => handlenavbarAktif("/FormBiodata")}
-        >
-          Tester
-        </a>
-      </Typography>
     </ul>
   );
   return (
@@ -152,7 +139,9 @@ function Navigation() {
             <div className="hidden sm:flex items-center gap-x-5">
               <a
                 className={`font-bold hover:text-secondary cursor-pointer ${
-                  navbarAktif === "/Keranjang" ? "text-secondary" : "text-white"
+                  navbarAktif === "/Keranjang" || navbarAktif === "/Pemesanan"
+                    ? "text-secondary"
+                    : "text-white"
                 }`}
                 onClick={() => handlenavbarAktif("/Keranjang")}
               >
@@ -167,7 +156,8 @@ function Navigation() {
                 <MenuHandler>
                   <a
                     className={`font-bold hover:text-secondary cursor-pointer ${
-                      navbarAktif === "/PengaturanProfil"
+                      navbarAktif === "/PengaturanProfil" ||
+                      navbarAktif === "/Transaksi"
                         ? "text-secondary"
                         : "text-white"
                     }`}
@@ -188,8 +178,12 @@ function Navigation() {
                     Profile Saya
                   </MenuItem>
                   <MenuItem
-                    className="hover:!bg-secondary hover:!text-white"
-                    onClick={() => handlenavbarAktif("/TrackingPesanan")}
+                    className={`hover:!bg-secondary hover:!text-white ${
+                      navbarAktif === "/Transaksi"
+                        ? "bg-secondary text-white"
+                        : ""
+                    }`}
+                    onClick={() => handlenavbarAktif("/Transaksi")}
                   >
                     Pesanan Saya
                   </MenuItem>
@@ -277,7 +271,7 @@ function Navigation() {
                   </MenuItem>
                   <MenuItem
                     className="hover:!bg-secondary hover:!text-white"
-                    onClick={() => handlenavbarAktif("/TrackingPesanan")}
+                    onClick={() => handlenavbarAktif("/Transaksi")}
                   >
                     Pesanan Saya
                   </MenuItem>

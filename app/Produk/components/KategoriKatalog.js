@@ -26,7 +26,7 @@ function Katalog() {
                   className="flex flex-col items-center border-2 border-secondary p-6 rounded-lg shadow-lg hover:shadow-2xl transition transform hover:scale-105"
                 >
                   {informasi.icon}
-                  <h2 className="text-xl font-semibold mb-2">
+                  <h2 className="text-xl font-semibold mb-2 text-center">
                     {informasi.name}
                   </h2>
                   <p className="text-gray-500 text-center mb-4">

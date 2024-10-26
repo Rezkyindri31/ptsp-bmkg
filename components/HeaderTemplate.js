@@ -19,6 +19,18 @@ function HeaderTemplate() {
       desc: "Daftar Belanja Anda",
       title: "Keranjang Anda",
     },
+    "/Pemesanan": {
+      desc: "Konfirmasi Daftar Belanja Anda",
+      title: "Keranjang Anda",
+    },
+    "/Transaksi": {
+      desc: "Daftar Pesanan Anda",
+      title: "Pesanan Anda",
+    },
+    "/Ajukan": {
+      desc: "Daftar Pengajuan",
+      title: "Pengajuan Anda",
+    },
   };
 
   const currentContent = content[navbarAktif] || {
