@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Card, CardBody, Button } from "@/app/MTailwind";
 import LogoPerorangan from "@/assets/img/Icon/Logo-Perorangan.png";
 import LogoPerusahaan from "@/assets/img/Icon/Logo-Perusahaan.png";
-import FormBiodata from "@/app/FormBiodata/components/FormPerorangan";
+import FormPerorangan from "@/app/FormBiodata/components/FormPerorangan";
 import FormPerusahaan from "@/app/FormBiodata/components/FormPerusahaan";
 
 function Registration() {
@@ -25,10 +25,10 @@ function Registration() {
               <CardBody className="flex flex-col items-center">
                 <Image
                   src={LogoPerorangan}
-                  width={200}
-                  height={200}
+                  width={300}
+                  height={300}
                   alt="Perorangan"
-                  className="w-32 h-32 mb-4"
+                  className="w-60 h-60 mb-4"
                   priority
                 />
                 <h2 className="text-lg font-bold mb-2">PERORANGAN</h2>
@@ -48,10 +48,10 @@ function Registration() {
               <CardBody className="flex flex-col items-center">
                 <Image
                   src={LogoPerusahaan}
-                  width={200}
-                  height={200}
+                  width={300}
+                  height={300}
                   alt="Perusahaan/Instansi"
-                  className="w-32 h-32 mb-4"
+                  className="w-60 h-60 mb-4"
                   priority
                 />
                 <h2 className="text-lg font-bold mb-2">PERUSAHAAN/INSTANSI</h2>
@@ -70,7 +70,7 @@ function Registration() {
         </section>
       ) : (
         <section className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-primary to-secondary">
-          {pilihanKategoriDaftar === "perorangan" && <FormBiodata />}
+          {pilihanKategoriDaftar === "perorangan" && <FormPerorangan />}
           {pilihanKategoriDaftar === "perusahaan" && <FormPerusahaan />}
         </section>
       )}

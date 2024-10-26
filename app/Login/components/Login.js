@@ -1,22 +1,42 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input, Button, Checkbox, Spinner } from "@/app/MTailwind";
+import { Input, Button } from "@/app/MTailwind";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import LoginIcon from "@/assets/img/Icon/Login.png";
 import useNavbarAktif from "@/hooks/Frontend/useNavbarAktif";
+import { auth, googleProvider, firestore } from "@/lib/firebaseConfig";
+import { signInWithPopup } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 function AuthPage() {
   const { navbarAktif, handlenavbarAktif } = useNavbarAktif("/Beranda");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordVisibleLogin, setIsPasswordVisibleLogin] = useState(false);
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prevState) => !prevState);
-  };
   const togglePasswordVisibilityLogin = () => {
     setIsPasswordVisibleLogin((prevState) => !prevState);
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      const userRef = doc(firestore, "pengguna", user.uid);
+      await setDoc(userRef, {
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        createdAt: new Date(),
+      });
+
+      console.log("User data stored in Firestore:", user);
+      handlenavbarAktif("/Dashboard"); // Example redirection
+    } catch (error) {
+      console.error("Google Sign-In error:", error);
+      alert("Google Sign-In failed: " + error.message);
+    }
   };
 
   return (
@@ -35,9 +55,9 @@ function AuthPage() {
                   <Input
                     className="!border-2 !border-secondary bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
                     placeholder="Enter your email"
-                    labelProps={{
-                      className: "hidden",
-                    }}
+                    labelProps={{ className: "hidden" }}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="mb-4 relative">
@@ -45,11 +65,8 @@ function AuthPage() {
                     className="!border-2 !border-secondary bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
                     type={isPasswordVisibleLogin ? "text" : "password"}
                     placeholder="Password"
-                    labelProps={{
-                      className: "hidden",
-                    }}
+                    labelProps={{ className: "hidden" }}
                   />
-
                   <button
                     type="button"
                     onClick={togglePasswordVisibilityLogin}
@@ -60,15 +77,7 @@ function AuthPage() {
                         : "Tampilkan Password"
                     }
                   >
-                    {isPasswordVisibleLogin ? (
-                      <span role="img" aria-label="Hide password">
-                        <IoMdEyeOff />
-                      </span>
-                    ) : (
-                      <span role="img" aria-label="Show password">
-                        <IoMdEye />
-                      </span>
-                    )}
+                    {isPasswordVisibleLogin ? <IoMdEyeOff /> : <IoMdEye />}
                   </button>
                 </div>
                 <div className="flex justify-end items-center mb-6">
@@ -81,7 +90,10 @@ function AuthPage() {
                 </Button>
               </form>
               <p className="text-center text-black font-bold mb-6">OR</p>
-              <Button className="w-full mb-4 !border-2 !border-secondary text-black text-sm flex items-center justify-center space-x-2 my-8">
+              <Button
+                className="w-full mb-4 !border-2 !border-secondary text-black text-sm flex items-center justify-center space-x-2 my-8"
+                onClick={handleGoogleSignIn}
+              >
                 <FcGoogle />
                 <span>Continue with Google</span>
               </Button>
@@ -133,8 +145,6 @@ function AuthPage() {
                     label="Email"
                     color="blue"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
