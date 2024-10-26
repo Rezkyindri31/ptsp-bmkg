@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import {
   Card,
   Typography,
@@ -13,6 +14,10 @@ import {
   TimelineHeader,
   TimelineIcon,
   TimelineBody,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
 } from "@/app/MTailwind";
 import {
   FaInfoCircle,
@@ -75,6 +80,24 @@ function OrderList({ onDetailClick }) {
 }
 
 function TransactionDetails({ isOpen, onClose }) {
+  const [bukaPerbaikanDokumen, setBukaPerbaikanDokumen] = useState(false);
+  const [perbaikanDokumenDipilih, setPerbaikanDokumenDipilih] =
+    useState("Perbaikan Dokumen");
+  const [bukaPengisianIkm, setBukaPengisianIkm] = useState(false);
+  const [pengisianDokumenIkm, setPengisianDokumenIkm] =
+    useState("Pengisian IKM");
+  const [pilihFile, setPilihFile] = useState(null);
+
+  const tanganiUbahfile = (event) => {
+    setPilihFile(event.target.files[0]);
+  };
+
+  const tanganiSimpan = () => {
+    if (pilihFile) {
+      console.log("File selected:", pilihFile.name);
+    }
+    setBukaPerbaikanDokumen(false);
+  };
   return (
     <div className="h-full overflow-y-auto">
       <Dialog
@@ -84,7 +107,7 @@ function TransactionDetails({ isOpen, onClose }) {
         size="lg"
       >
         <DialogHeader>Tracking Pesanan # Nomor Pesanan</DialogHeader>
-        <DialogBody className="overflow-y-auto h-full py-5">
+        <DialogBody className="overflow-y-auto h-full w-full py-5 absolute">
           <div className="space-y-8">
             <Timeline>
               <TimelineItem>
@@ -105,10 +128,11 @@ function TransactionDetails({ isOpen, onClose }) {
                     Ajuan pada tanggal 22/10/2024
                   </Typography>
                   <Button
-                    className="border-2 border-white bg-red-800 text-white"
                     size="sm"
+                    onClick={() => setBukaPerbaikanDokumen(true)}
+                    className="bg-[#0F67B1] text-white"
                   >
-                    Perbaikan Dokumen
+                    {perbaikanDokumenDipilih}
                   </Button>
                 </TimelineBody>
               </TimelineItem>
@@ -166,11 +190,13 @@ function TransactionDetails({ isOpen, onClose }) {
                   >
                     ...
                   </Typography>
+
                   <Button
                     className="border-2 border-white bg-yellow-800 text-white"
                     size="sm"
+                    onClick={() => setBukaPengisianIkm(true)}
                   >
-                    Pengisian IKM
+                    {pengisianDokumenIkm}
                   </Button>
                 </TimelineBody>
               </TimelineItem>
@@ -284,6 +310,96 @@ function TransactionDetails({ isOpen, onClose }) {
             </div>
           </div>
         </DialogBody>
+      </Dialog>
+      <Dialog
+        open={bukaPerbaikanDokumen}
+        handler={() => setBukaPerbaikanDokumen(false)}
+        className="fixed inset-0 items-center justify-center w-96 h-80 mx-auto"
+      >
+        <DialogHeader>Perbaikan Dokumen</DialogHeader>
+        <DialogBody>
+          <div className="p-4 bg-white rounded shadow-md w-full">
+            <div className="mt-4">
+              <label className="block mb-2 text-sm font-medium text-gray-700">
+                Unggah File
+              </label>
+              <Button className="bg-[#0F67B1] text-white">
+                <input
+                  type="file"
+                  onChange={tanganiUbahfile}
+                  className="block w-full text-sm text-gray-500 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+                />
+              </Button>
+            </div>
+            <Typography className="text-red-400" variant="h6">
+              *Surat kegiatan bencana
+            </Typography>
+            <div className="flex justify-between mt-4">
+              <Button
+                size="sm"
+                color="blue"
+                onClick={tanganiSimpan}
+                className="w-[48%]"
+              >
+                Simpan
+              </Button>
+              <Button
+                size="sm"
+                color="red"
+                onClick={() => setBukaPerbaikanDokumen(false)}
+                className="w-[48%]"
+              >
+                Tutup
+              </Button>
+            </div>
+          </div>
+        </DialogBody>
+      </Dialog>
+      <Dialog
+        open={bukaPengisianIkm}
+        handler={() => setBukaPengisianIkm(false)}
+        className="fixed inset-0 flex items-center justify-center bg-green-500 w-96 m-auto"
+      >
+        <div className="p-4 bg-white rounded shadow-md w-full max-w-xs">
+          <h2 className="text-lg font-bold mb-4 text-center">Pengisian IKM</h2>
+          <ul className="max-h-48 overflow-y-auto"></ul>
+
+          <div className="mt-4">
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Unggah File
+            </label>
+            <Button className="bg-[#0F67B1] text-white">
+              <input
+                type="file"
+                onChange={tanganiUbahfile}
+                className="block w-full text-sm text-gray-500 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+              />
+            </Button>
+          </div>
+
+          <Typography className="text-red-400" variant="h6">
+            *Surat kegiatan bencana
+          </Typography>
+
+          <div className="flex justify-between mt-4">
+            <Button
+              size="sm"
+              color="blue"
+              onClick={tanganiSimpan}
+              className="w-[48%]"
+            >
+              Simpan
+            </Button>
+            <Button
+              size="sm"
+              color="red"
+              onClick={() => setBukaPerbaikanDokumen(false)}
+              className="w-[48%]"
+            >
+              Tutup
+            </Button>
+          </div>
+        </div>
       </Dialog>
     </div>
   );

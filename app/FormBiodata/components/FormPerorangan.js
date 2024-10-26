@@ -52,17 +52,7 @@ function FormPerorangan() {
             </ul>
           </div>
           <div className="mt-8 flex justify-between">
-            {stepAktif > 0 && (
-              <Button className="bg-primary" onClick={handleSebelumnya}>
-                Prev
-              </Button>
-            )}
-            {stepAktif < 1 && (
-              <Button className="bg-primary" onClick={handleSelanjutnya}>
-                Next
-              </Button>
-            )}
-            {stepAktif === 1 && (
+            {stepAktif === 0 && (
               <Button className="bg-secondary" disabled={!checkboxAktif}>
                 Simpan Data
               </Button>

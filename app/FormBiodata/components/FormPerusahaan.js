@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { Button, Input, Checkbox } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import LogoPerusahaan from "@/assets/img/Icon/Logo-Perusahaan.png";
 import StepFormPerusahaan from "@/constant/constFormPerusahaan";
 import useStepperForm from "@/hooks/Frontend/useStepperForm";
@@ -57,12 +57,12 @@ function FormPerusahaan() {
                 Prev
               </Button>
             )}
-            {stepAktif < 2 && (
+            {stepAktif < 1 && (
               <Button className="bg-primary" onClick={handleSelanjutnya}>
                 Next
               </Button>
             )}
-            {stepAktif === 2 && (
+            {stepAktif === 1 && (
               <Button className="bg-secondary" disabled={!checkboxAktif}>
                 Simpan Data
               </Button>

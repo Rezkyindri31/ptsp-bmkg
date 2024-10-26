@@ -10,7 +10,7 @@ const StepFormPerusahaan = ({ stepAktif, checkboxAktif, setCheckboxAktif }) => {
             <h2 className="text-center text-lg bg-secondary my-4 py-2 text-white uppercase font-bold tracking-wide rounded-md">
               Data Diri
             </h2>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-sm font-bold"> No Identitas</p>
                 <Input
@@ -80,30 +80,6 @@ const StepFormPerusahaan = ({ stepAktif, checkboxAktif, setCheckboxAktif }) => {
                   required
                 />
               </div>
-            </div>
-          </div>
-        </div>
-      );
-    case 1:
-      return (
-        <div className="flex items-center justify-center">
-          <div className="w-full max-w-7xl">
-            <h2 className="text-center text-lg bg-secondary my-4 py-2 text-white uppercase font-bold tracking-wide rounded-md">
-              Alamat Lengkap
-            </h2>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-3">
-              <div>
-                <p className="text-sm font-bold"> Alamat</p>
-                <Input
-                  className="input-custom"
-                  placeholder="Alamat"
-                  size="lg"
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  required
-                />
-              </div>
               <div>
                 <p className="text-sm font-bold">No HP / No Telepon</p>
                 <Input
@@ -116,42 +92,18 @@ const StepFormPerusahaan = ({ stepAktif, checkboxAktif, setCheckboxAktif }) => {
                   required
                 />
               </div>
-              <div>
-                <p className="text-sm font-bold">Provinsi</p>
-                <Input
-                  className="input-custom"
-                  placeholder="Provinsi"
-                  size="lg"
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  required
-                />
-              </div>
-              <div>
-                <p className="text-sm font-bold"> Kabupaten/Kota</p>
-                <Input
-                  className="input-custom"
-                  placeholder="Kabupaten/Kota"
-                  size="lg"
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  required
-                />
-              </div>
             </div>
           </div>
         </div>
       );
-    case 2:
+    case 1:
       return (
         <div className="flex items-center justify-center">
           <div className="w-full max-w-7xl">
             <h2 className="text-center text-lg bg-secondary my-4 py-2 text-white uppercase font-bold tracking-wide rounded-md">
               Data Perusahaan Badan Usaha
             </h2>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-sm font-bold"> NPWP</p>
                 <Input
@@ -189,7 +141,7 @@ const StepFormPerusahaan = ({ stepAktif, checkboxAktif, setCheckboxAktif }) => {
                 required
               />
             </div>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-sm font-bold">Provinsi</p>
                 <Input
